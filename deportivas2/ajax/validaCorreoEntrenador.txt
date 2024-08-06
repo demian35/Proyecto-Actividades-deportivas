@@ -1,0 +1,42 @@
+$(document).ready(function() {
+    $("#button-addon3").click(function() {
+        var correoEntrenador = $("#correoEntrenador").val();
+
+        // Realizar la solicitud AJAX al servidor para buscar el correo
+        $.ajax({
+            type: "POST",
+            url: "../conexiones/registraEntrenador.php", // Reemplaza con la ruta correcta a tu script PHP de búsqueda
+            data: { correoEntrenador: correoEntrenador },
+            success: function(response) {
+                // Manejar la respuesta del servidor aquí
+                console.log(response);
+
+                // Si el correo existe, puedes mostrar los datos en el formulario para permitir la edición
+                if (response) {
+                    // Convertir la respuesta JSON a un objeto JavaScript
+                    var datosEntrenador = JSON.parse(response);
+
+                    // Usar los datos en el formulario
+                    $('#confirmaCorreo').val(datosEntrenador.correoEntrenador);
+                    $("#nombreEntrenador").val(datosEntrenador.nomEntrenador);
+                    $("#apaternoEntrenador").val(datosEntrenador.primerApellido);
+                    $("#amaternoEntrenador").val(datosEntrenador.segundoApellido);
+                    $("#telefono").val(datosEntrenador.telefono);
+                    $("#celular").val(datosEntrenador.celular);
+
+                    // También puedes habilitar el botón de editar u otras acciones según tus necesidades
+                    $("#editarEntrenador").prop("disabled", false);
+                } else {
+                    // Si el correo no existe, mostrar un mensaje de error en el footer del card
+                    $("#mensajeError").html("<p class='text-danger'>El correo no existe en la base de datos. Por favor, registra un nuevo entrenador.</p>");
+                    // También puedes deshabilitar el botón de editar u otras acciones según tus necesidades
+                    $("#editarEntrenador").prop("disabled", true);
+                }
+            },
+            error: function(error) {
+                // Manejar errores de la solicitud aquí
+                console.log("Error: " + error);
+            }
+        });
+    });
+});

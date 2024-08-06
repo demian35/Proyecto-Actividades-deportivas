@@ -1,0 +1,103 @@
+$(document).ready(function () {
+    //controlador de eventos para el campo de entrada
+    $('#numFolio').on('input', function () {
+        var numFolio = $(this).val();
+
+        // Si la longitud del valor del campo es 0 o menos, deshabilitar el botón "Siguiente"
+        if (numFolio.length <= 5) {
+            $('#sigFolio').prop('disabled', true);
+            // Limpiar el nombre del plantel en el encabezado del card
+            $('#folioValidofooter').text('');
+        }
+    });
+
+    // Evento click para el botón "Validar Folio"
+    $('#button-addon1').click(function () {
+        var numFolio = $('#numFolio').val();
+        var idConceptoPago = $('#idConceptoPago').val();
+        if (!numFolio && !idConceptoPago) {
+            // Muestra la notificación de error de SweetAlert si faltan campos
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Ingrese el folio y el concepto de pago.',
+            });
+        } else if (!numFolio) {
+            // Muestra la notificación de error de SweetAlert si faltan campos
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Ingrese el número de folio por favor.',
+            });
+        } else if (!idConceptoPago) {
+            // Muestra la notificación de error de SweetAlert si faltan campos
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Ingrese el concepto de pago por favor.',
+            });
+        } else {
+            $.ajax({
+                type: 'POST',
+                url: '../conexiones/validaFolioPago.php',
+                data: {
+                    numFolio: numFolio,
+                    idConceptoPago: idConceptoPago
+                },
+                success: function (response) {
+                    if (response === "Folio Válido") {
+                        $('#folioValidofooter').text(response).css("color", "#008f4c");
+                        $('#sigFolio').prop('disabled', false);
+                    } else if (response === "Folio no válido: El pago no ha sido finalizado") {
+                        $('#folioValidofooter').text(response).css("color", "red");
+                        $('#sigFolio').prop('disabled', true);
+                    } else if (response === "Folio no válido: El folio no tiene el id_concepto_pago requerido") {
+                        $('#folioValidofooter').text(response).css("color", "red");
+                        $('#sigFolio').prop('disabled', true);
+                    } else {
+                        $('#folioValidofooter').text(response).css("color", "red");
+                        $('#sigFolio').prop('disabled', true);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error al enviar la solicitud AJAX: ' + status);
+                }
+            });
+        }
+    });
+});
+
+
+
+
+pdf
+
+    //jugadores:
+    // Definir el contenido del PDF
+    $content = '
+    <h1 style="text-align:center;">Jugadores</h1>
+    <table style="border-collapse: collapse; border:none;">
+        <thead>
+            <tr style="border: none;">
+                <th style="border: none;">Número</th>
+                <th style="border: none;">No. de cuenta</th>
+                <th style="border: none;">Nombre</th>
+            </tr>
+        </thead>
+        <tbody>';
+
+    foreach ($jugadoresCombinados as $fila) {
+    $content .= '
+            <tr style="border: none;">
+                <td style="border: none;">' . $fila->idJugador . '</td>
+                <td style="border: none;">' . $fila->a_exp . '</td>
+                <td style="border: none;">' . $fila->nombre->a_nom . ' ' . $fila->nombre->a_pat . ' ' . $fila->nombre->a_mat . '</td>
+            </tr>';
+    }
+
+    $content .= '
+        </tbody>
+    </table>';
+
+    // Agregar el contenido al PDF
+    $pdf->writeHTML($content, true, false, true, false, '');

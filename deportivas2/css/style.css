@@ -1,0 +1,226 @@
+html {
+  background-color: #fff;
+}
+
+.navbar .navbar-nav .nav-link.text-custom-white {
+  color: #fff;
+}
+
+
+
+.navbar-brand img {
+  max-width: 100px;
+  max-height: 50px;
+}
+
+.bg-custom-gray {
+  background-color: #ccccccab;
+}
+
+.btn .btn-success {
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+/* Estilo del menú lateral cuando se muestra */
+.sidenav.active {
+  left: 0;
+}
+
+.card {
+  margin-top: 20px;
+}
+
+
+.form-control#claveIncorporacion {
+  width: 100px !important;
+}
+
+.table-bordered {
+  border: 2px solid #000;
+  border-collapse: collapse;
+}
+
+.thead-blue th {
+  background-color: rgb(0, 81, 255);
+  color: white;
+}
+
+.table-container {
+  max-height: 400px; /* Altura máxima del contenedor */
+  overflow-y: auto; /* Agrega una barra de desplazamiento vertical si es necesario */
+}
+
+#formulariocreaTorneo {
+  display: block !important;
+}
+
+#creaEventosContent {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  /* Agrega estilos específicos para pantallas más pequeñas aquí */
+  .btn-group {
+    flex-direction: row; /* Cambia la dirección de los botones a fila (en línea) */
+    justify-content: center;
+    align-items: center;
+  }
+
+  .table-bordered {
+    border: 2px solid #000;
+    border-collapse: collapse;
+  }
+
+  /* Opcional: Ajusta el espacio entre los botones */
+.btn-group button {
+    margin: 0 5px; /* Puedes ajustar el valor según tus preferencias */
+}
+
+.btn-group .btn.active {
+  pointer-events: none; /* Desactiva clics en el botón activo */
+  opacity: 0.7; /* Puedes ajustar la opacidad según tus preferencias */
+}
+
+  /* Ejemplo de diseño fluido con unidades relativas */
+  .card {
+    margin-top: 20px;
+    padding: 1em;
+  }
+
+  .btn {
+    font-size: 1em;
+
+  }
+
+  /* Hacer las imágenes responsive */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .table-bordered {
+    border: 2px solid #000;
+    border-collapse: collapse;
+  }
+  
+}
+
+/* Ejemplo de diseño fluido con unidades relativas */
+.card {
+  margin-top: 20px;
+  padding: 1em;
+}
+
+.btn {
+  font-size: 1em;
+}
+
+/* Hacer las imágenes responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.custom-card-width{
+  width: 100%;
+}
+
+.custom-spacing-between-buttons{
+  margin-right: 10px;
+}
+
+/* estilos cabecera */
+
+.banner {
+  background-color: midnightblue;
+  text-align: center;
+  align-items: center;
+}
+
+.bannerEventos {
+  background-color: gray;
+}
+
+.color {
+  color: 	midnightblue;
+}
+
+#img-unam {
+  max-width: 70px;
+  max-height: 50px;
+}
+
+#img-dgire {
+  max-width: 70px;
+  max-height: 50px;
+}
+
+#txtUnam {
+  color: white;
+  font-size: 16px;
+  font-weight: normal;
+  text-align: left;
+}
+
+#txtDgire {
+  color: white;
+  font-size: 16px;
+  font-weight: normal;
+  text-align: right;
+}
+
+.txtEventos h2 {
+  color:white;
+  font-weight: normal;
+}
+
+
+/* imagenes de la cabecera*/
+@media (min-width: 1001px) {
+  .hidden-lg,
+  .hidden-md {
+      display: none !important;
+  }
+
+  .hidden-sm,
+  .hidden-xs {
+      display: true;
+  }
+}
+
+
+/* titulos de la cabecera*/
+@media (max-width: 1000px) {
+  .hidden-sm,
+  .hidden-xs {
+      display: none !important;
+  }
+
+  .hidden-lg,
+  .hidden-md {
+      display: true;
+  }
+}
+
+#tableEvents {
+  max-height: calc(100vh - 200px); /* Ajusta el valor de 200px según el tamaño del footer y otros elementos fijos en tu página */
+  overflow-y: auto; /* Agrega una barra de desplazamiento vertical si la tabla excede la altura máxima */
+}
+
+/*footer Usuario*/
+@media (max-width: 576px) { /* Aplica estilos solo en pantallas pequeñas */
+  .custom-footer {
+      position: static !important; /* Vuelve a la posición estática para evitar la superposición */
+      margin-top: 16px; /* Agrega margen superior para separar del contenido anterior */
+  }
+}
+
+.nav-link-disabled {
+  pointer-events: none; /* Deshabilita eventos de puntero */
+  color: #6c757d; /* Cambia el color del texto para indicar desactivación */
+  cursor: not-allowed; /* Cambia el cursor al indicador de no permitido */
+}
